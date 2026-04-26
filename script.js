@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="feature"><i data-lucide="maximize"></i> ${property.sqft} sqft</span>
                         </div>
                         <div class="property-footer">
-                            <span class="property-price">${property.price}</span>
+                            <span class="property-price" style="font-size: 0.9rem; color: var(--primary); font-weight: 700; letter-spacing: 0.5px;">Price on Request</span>
                             <div class="property-actions">
                                 <button class="btn-360">
                                     <i data-lucide="rotate-3d"></i> 360°
@@ -405,6 +405,15 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('nexora_favorites', JSON.stringify(favorites));
     }
 
+    function updateSavedBadge() {
+        const favorites = JSON.parse(localStorage.getItem('nexora_favorites') || '[]');
+        const badges = document.querySelectorAll('#saved-count');
+        badges.forEach(badge => {
+            badge.textContent = favorites.length;
+            badge.style.display = favorites.length > 0 ? 'flex' : 'none';
+        });
+    }
+
     function showToast(msg) {
         const toast = document.createElement('div');
         toast.className = 'toast-notification';
@@ -415,7 +424,11 @@ document.addEventListener('DOMContentLoaded', () => {
             toast.classList.remove('active');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
+        updateSavedBadge();
     }
+    
+    // Initial call
+    updateSavedBadge();
     
     // AI Price Predictor Logic
     const runPredictBtn = document.getElementById('run-prediction');

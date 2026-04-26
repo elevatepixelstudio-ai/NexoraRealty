@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexora Realty | Admin Gateway</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
     <link rel="stylesheet" href="index.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -155,7 +157,7 @@
                 <label>Advisor Email</label>
                 <div class="input-wrapper">
                     <i data-lucide="mail" size="18"></i>
-                    <input type="email" id="email" placeholder="name@nexora.in" required>
+                    <input type="email" id="email" placeholder="name@nexorarealty.in" required>
                 </div>
             </div>
 
@@ -193,13 +195,13 @@
             
             setTimeout(() => {
                 // Official Credentials Check
-                if (email === 'gaurav@nexora.in' && password === 'admin123') {
+                if (email === 'gaurav@nexorarealty.in' && password === 'admin123') {
                     localStorage.setItem('nexora_admin_logged_in', 'true');
                     window.location.href = 'admin.html';
                 } else {
                     btn.innerHTML = originalContent;
                     lucide.createIcons();
-                    alert('Invalid Advisor Credentials. Please try gaurav@nexora.in / admin123');
+                    alert('Invalid Advisor Credentials. Please try gaurav@nexorarealty.in / admin123');
                 }
             }, 1500);
         });
