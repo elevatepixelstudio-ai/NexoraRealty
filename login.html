@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexora Realty | Admin Gateway</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('assets/img/hero-bg.png');
+            background-size: cover;
+            background-position: center;
+            padding: 2rem;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 2rem;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-logo {
+            margin-bottom: 2rem;
+        }
+
+        .login-logo img {
+            height: 60px;
+            filter: brightness(0) invert(1);
+        }
+
+        .login-header h1 {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .login-header p {
+            color: var(--gray-400);
+            font-size: 0.9rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--gray-300);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            margin-left: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            color: var(--white);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-wrapper input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(184, 134, 11, 0.2);
+        }
+
+        .login-btn {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 1.25rem;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .login-footer {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        .secure-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(184, 134, 11, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body class="login-page">
+
+    <div class="login-card">
+        <div class="login-logo">
+            <img src="assets/img/logo.png" alt="Nexora Logo">
+        </div>
+
+        <div class="secure-badge">
+            <i data-lucide="shield-check" size="14"></i> SECURE ADMIN GATEWAY
+        </div>
+
+        <div class="login-header">
+            <h1>Partner Login</h1>
+            <p>Access your advisor dashboard and property manager.</p>
+        </div>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label>Advisor Email</label>
+                <div class="input-wrapper">
+                    <i data-lucide="mail" size="18"></i>
+                    <input type="email" id="email" placeholder="name@nexora.in" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Security Key</label>
+                <div class="input-wrapper">
+                    <i data-lucide="lock" size="18"></i>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary login-btn">
+                <span>Enter Dashboard</span>
+                <i data-lucide="arrow-right" size="18"></i>
+            </button>
+        </form>
+
+        <div class="login-footer">
+            <p>&copy; 2026 Nexora Realty Advisory. Confidential Access.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const btn = this.querySelector('.login-btn');
+            
+            // Premium Loading State
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = '<i data-lucide="refresh-cw" class="animate-spin"></i> Authenticating...';
+            lucide.createIcons();
+            
+            setTimeout(() => {
+                // Official Credentials Check
+                if (email === 'gaurav@nexora.in' && password === 'admin123') {
+                    localStorage.setItem('nexora_admin_logged_in', 'true');
+                    window.location.href = 'admin.html';
+                } else {
+                    btn.innerHTML = originalContent;
+                    lucide.createIcons();
+                    alert('Invalid Advisor Credentials. Please try gaurav@nexora.in / admin123');
+                }
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

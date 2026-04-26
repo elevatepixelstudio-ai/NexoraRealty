@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties | Nexora Realty</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body class="listing-page">
+
+    <header id="header" class="scrolled">
+        <div class="container">
+            <nav class="nav-container" style="padding: 1rem 0;">
+                <a href="index.html" class="logo">
+                    <img src="assets/img/logo.png" alt="Nexora Realty Logo" style="height: 70px;">
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="properties.html" class="active">Properties</a></li>
+                    <li><a href="saved-properties.html">My Saved</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="login.html" class="btn btn-outline">Log In</a>
+                    <a href="admin.html" class="btn btn-primary">Partner Portal</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-head">
+            <div class="container">
+                <h1 class="page-title">Property Listings</h1>
+                <p class="page-subtitle">Find your dream home with our advanced filtering system.</p>
+            </div>
+        </section>
+
+        <section class="properties-area">
+            <div class="container">
+                <div class="properties-layout">
+
+                    <!-- Sidebar Filters -->
+                    <aside class="properties-sidebar">
+                        <div class="sidebar-widget">
+                            <h3 class="widget-title">Smart Search</h3>
+
+                            <div class="filter-group-alt">
+                                <input type="text" id="keyword-search" placeholder="Key word">
+                            </div>
+
+                            <div class="filter-group-alt" style="margin-top: 1rem;">
+                                <select id="filter-location">
+                                    <option value="all">Select your city</option>
+                                    <option value="Kharadi">Kharadi</option>
+                                    <option value="Wagholi">Wagholi</option>
+                                    <option value="Koregaon Park">Koregaon Park</option>
+                                    <option value="Viman Nagar">Viman Nagar</option>
+
+                                </select>
+                            </div>
+
+                            <div class="filter-group-alt" style="margin-top: 1rem;">
+                                <select id="filter-status">
+                                    <option value="all">-Status-</option>
+                                    <option value="For Sale">For Sale</option>
+                                    <option value="For Rent">For Rent</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-widget">
+                            <h3 class="widget-title">Advanced Filters</h3>
+
+                            <!-- Price Slider -->
+                            <div class="advanced-range">
+                                <label>Price range (₹): <span id="price-min-val" class="active-val">1 Cr</span></label>
+                                <input type="range" id="price-min" min="1" max="20" value="1" class="gold-slider">
+                                <div class="range-vals-row">
+                                    <span>1 Cr</span>
+                                    <span>20 Cr+</span>
+                                </div>
+                            </div>
+
+                            <!-- Area Slider -->
+                            <div class="advanced-range">
+                                <label>Property geo (m2) : <span id="area-min-val" class="active-val">50m</span></label>
+                                <input type="range" id="area-min" min="50" max="12000" step="50" value="50"
+                                    class="gold-slider">
+                                <div class="range-vals-row">
+                                    <span>50m</span>
+                                    <span>12000m</span>
+                                </div>
+                            </div>
+
+                            <!-- Baths Slider -->
+                            <div class="advanced-range">
+                                <label>Min baths : <span id="bath-min-val" class="active-val">1</span></label>
+                                <input type="range" id="bath-min" min="1" max="10" value="1" class="gold-slider">
+                                <div class="range-vals-row">
+                                    <span>1</span>
+                                    <span>10</span>
+                                </div>
+                            </div>
+
+                            <!-- Bed Slider -->
+                            <div class="advanced-range">
+                                <label>Min bed : <span id="bed-min-val" class="active-val">1</span></label>
+                                <input type="range" id="bed-min" min="1" max="10" value="1" class="gold-slider">
+                                <div class="range-vals-row">
+                                    <span>1</span>
+                                    <span>10</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sidebar-widget">
+                            <h3 class="widget-title">Amenities</h3>
+                            <div class="amenities-grid-sidebar">
+                                <label class="amenity-cb"><input type="checkbox" value="Fire Place"> <span>Fire
+                                        Place(3100)</span></label>
+                                <label class="amenity-cb"><input type="checkbox" value="Dual Sinks"> <span>Dual
+                                        Sinks(500)</span></label>
+                                <label class="amenity-cb"><input type="checkbox" value="Swimming Pool"> <span>Swimming
+                                        Pool(1190)</span></label>
+                                <label class="amenity-cb"><input type="checkbox" value="2 Stories"> <span>2
+                                        Stories(4600)</span></label>
+                                <label class="amenity-cb"><input type="checkbox" value="Emergency Exit"> <span>Emergency
+                                        Exit(200)</span></label>
+                                <label class="amenity-cb"><input type="checkbox" value="Laundry Room"> <span>Laundry
+                                        Room(10073)</span></label>
+                                <label class="amenity-cb"><input type="checkbox" value="Jog Path"> <span>Jog
+                                        Path(1503)</span></label>
+                                <label class="amenity-cb"><input type="checkbox" value="26 Ceilings"> <span>26'
+                                        Ceilings(1200)</span></label>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" id="apply-filters" style="width: 100%;">Apply Filters</button>
+                    </aside>
+
+                    <!-- Properties Main Content -->
+                    <div class="properties-main">
+                        <div class="properties-header">
+                            <div class="sorting-controls">
+                                <span class="results-count"><strong id="property-count">0</strong> Properties
+                                    Found</span>
+                                <div class="sort-select">
+                                    <label>Sort by:</label>
+                                    <select id="sort-by">
+                                        <option value="newest">Property Date</option>
+                                        <option value="price-low">Property Price</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layout-switcher">
+                                <button class="active" title="Grid View"><i data-lucide="layout-grid"></i></button>
+                                <button title="List View"><i data-lucide="list"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="properties-grid" id="all-properties-container">
+                            <!-- JS loaded -->
+                        </div>
+
+                        <div class="pagination">
+                            <a href="#" class="page-link active">1</a>
+                            <a href="#" class="page-next">Next <i data-lucide="chevron-right"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="assets/img/logo.png" alt="Nexora Logo"
+                        style="height: 60px; margin-bottom: 1.5rem; filter: brightness(0) invert(1);">
+                    <p style="color: var(--gray-400); line-height: 1.6;">Pune's 1st AI-Assisted Real Estate Advisory
+                        firm. Delivering IT-driven advantages and premium consultancy for elite investments.</p>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Locations</h4>
+                    <ul class="footer-links">
+                        <li><a href="properties.html?loc=Kharadi">Kharadi</a></li>
+                        <li><a href="properties.html?loc=Baner">Baner Hills</a></li>
+                        <li><a href="properties.html?loc=Hinjewadi">Hinjewadi</a></li>
+                        <li><a href="properties.html?loc=Viman%20Nagar">Viman Nagar</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Contact Info</h4>
+                    <ul class="footer-links">
+                        <li style="color: var(--gray-400); display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="map-pin" size="18"></i>
+                            Level 5, ICC Trade Tower, SB Road, Pune
+                        </li>
+                        <li style="color: var(--gray-400); display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="phone" size="18"></i>
+                            +91 98765 43210
+                        </li>
+                        <li style="color: var(--gray-400); display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="mail" size="18"></i>
+                            concierge@nexora.in
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Nexora Realty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

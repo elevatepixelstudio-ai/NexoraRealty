@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details | Nexora Realty</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="details-page">
+
+    <header id="header" class="scrolled">
+        <div class="container">
+            <nav class="nav-container" style="padding: 1rem 0;">
+                <a href="index.html" class="logo">
+                    <img src="assets/img/logo.png" alt="Nexora Realty Logo" style="height: 70px;">
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="saved-properties.html">My Saved</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <a href="login.html" class="btn btn-outline">Log In</a>
+                    <a href="login.html" class="btn btn-primary">Partner Portal</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding-top: 100px; background: #fcfcfc;">
+        <div class="container">
+            <!-- Breadcrumbs -->
+            <div class="breadcrumbs" style="margin: 2rem 0; color: var(--gray-500); font-size: 0.9rem;">
+                <a href="index.html" style="color: var(--primary);">Home</a> / 
+                <a href="properties.html" style="color: var(--primary);">Properties</a> / 
+                <span id="breadcrumb-title">Property Details</span>
+            </div>
+
+            <div class="property-details-layout">
+                <!-- Main Content (Left) -->
+                <div class="details-main">
+                    <!-- Gallery Section -->
+                    <div class="gallery-hero">
+                        <img id="main-property-image" src="assets/img/hero-bg.png" alt="Property Image" class="main-img">
+                        <button class="btn-360-hero btn-360" id="detail-360-btn">
+                            <i data-lucide="rotate-3d"></i> Launch 360° Virtual Tour
+                        </button>
+                        <div class="gallery-thumbs">
+                            <img src="assets/img/property-1.png" alt="Thumb 1">
+                            <img src="assets/img/property-2.png" alt="Thumb 2">
+                            <img src="assets/img/property-3.png" alt="Thumb 3">
+                        </div>
+                    </div>
+
+                    <!-- Header Info -->
+                    <div class="details-header">
+                        <div class="title-area">
+                            <span id="detail-type" class="detail-badge">Luxury Villa</span>
+                            <h1 id="detail-title" class="detail-name">The Zenith Residence</h1>
+                            <p class="detail-loc"><i data-lucide="map-pin" size="18"></i> <span id="detail-location">Baner Hills, Pune</span></p>
+                        </div>
+                        <div class="price-area">
+                            <span id="detail-price" class="detail-cost">₹12.5 Cr</span>
+                            <span class="price-suffix">Negotiable</span>
+                        </div>
+                    </div>
+
+                    <!-- Vitals Bar -->
+                    <div class="vitals-bar">
+                        <div class="vital-item">
+                            <i data-lucide="bed"></i>
+                            <div>
+                                <strong id="detail-beds">5</strong>
+                                <span>Bedrooms</span>
+                            </div>
+                        </div>
+                        <div class="vital-item">
+                            <i data-lucide="bath"></i>
+                            <div>
+                                <strong id="detail-baths">6</strong>
+                                <span>Bathrooms</span>
+                            </div>
+                        </div>
+                        <div class="vital-item">
+                            <i data-lucide="maximize"></i>
+                            <div>
+                                <strong id="detail-sqft">4500</strong>
+                                <span>Sq Ft</span>
+                            </div>
+                        </div>
+                        <div class="vital-item">
+                            <i data-lucide="car"></i>
+                            <div>
+                                <strong id="detail-parking">2</strong>
+                                <span>Parking</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="details-section">
+                        <h3 class="section-title-sm">Description</h3>
+                        <p id="detail-description" class="description-text">
+                            This magnificent residence offers an unparalleled lifestyle of luxury and comfort. Nestled in the prestigious Baner Hills, the property features panoramic views, state-of-the-art architecture, and world-class amenities. Perfect for those who seek the very best in Pune's real estate market.
+                        </p>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="details-section">
+                        <h3 class="section-title-sm">Features & Amenities</h3>
+                        <div class="amenities-grid">
+                            <div class="amenity"><i data-lucide="check-circle" size="16"></i> Swimming Pool</div>
+                            <div class="amenity"><i data-lucide="check-circle" size="16"></i> High-End Gym</div>
+                            <div class="amenity"><i data-lucide="check-circle" size="16"></i> Club House</div>
+                            <div class="amenity"><i data-lucide="check-circle" size="16"></i> 24/7 Security</div>
+                            <div class="amenity"><i data-lucide="check-circle" size="16"></i> Power Backup</div>
+                            <div class="amenity"><i data-lucide="check-circle" size="16"></i> Private Garden</div>
+                        </div>
+                    <!-- Future Growth Intelligence -->
+                    <div class="details-section" style="background: rgba(184, 134, 11, 0.05); padding: 2.5rem; border-radius: var(--radius-2xl); border: 1px solid rgba(184, 134, 11, 0.1);">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;">
+                            <div>
+                                <span class="tour-badge" style="margin-bottom: 0.5rem;"><i data-lucide="trending-up"></i> Nexora AI-Viz Growth Report</span>
+                                <h3 class="section-title-sm" style="margin-bottom: 0;">Future Infrastructure & Growth</h3>
+                            </div>
+                            <i data-lucide="map" size="32" style="color: var(--primary);"></i>
+                        </div>
+                        
+                        <div class="insight-grid" style="grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 0;">
+                            <div class="insight-item">
+                                <h4 style="font-size: 0.8rem; color: var(--gray-400); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem;">1-5 Year Roadmap</h4>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="display: flex; gap: 0.75rem; font-size: 0.9rem; padding: 0.5rem 0; color: var(--gray-700);"><i data-lucide="train" size="16" style="color: var(--primary);"></i> Upcoming Metro Station (0.8km)</li>
+                                    <li style="display: flex; gap: 0.75rem; font-size: 0.9rem; padding: 0.5rem 0; color: var(--gray-700);"><i data-lucide="map" size="16" style="color: var(--primary);"></i> PMDAA Ring Road Integration</li>
+                                    <li style="display: flex; gap: 0.75rem; font-size: 0.9rem; padding: 0.5rem 0; color: var(--gray-700);"><i data-lucide="building" size="16" style="color: var(--primary);"></i> EON IT Park Phase 3 expansion</li>
+                                </ul>
+                            </div>
+                            <div class="insight-item">
+                                <h4 style="font-size: 0.8rem; color: var(--gray-400); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem;">Market Verdict</h4>
+                                <p style="font-size: 0.9rem; color: var(--gray-600); line-height: 1.6; margin: 0;">
+                                    The <span id="detail-corridor">Kharadi</span> corridor is identified as a <strong>High-Appreciation Zone</strong>. With top builders like Godrej and VTP acquiring land nearby, we expect a <strong>35% market value surge</strong> by 2029.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 2rem; border-top: 1px solid rgba(184, 134, 11, 0.1); padding-top: 1rem; display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                            <span style="font-size: 0.7rem; color: var(--gray-400); text-transform: uppercase; letter-spacing: 1px;">Data Sources:</span>
+                            <span style="font-size: 0.7rem; color: var(--gray-500); font-style: italic;">• PMC Development Plan 2024</span>
+                            <span style="font-size: 0.7rem; color: var(--gray-500); font-style: italic;">• MahaMetro DPR (Phase 3)</span>
+                            <span style="font-size: 0.7rem; color: var(--gray-500); font-style: italic;">• RERA Maharashtra Builder Filings</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar Inquiry (Right) -->
+                <aside class="details-sidebar">
+                    <div class="inquiry-card">
+                        <h3 class="inquiry-title">Inquire Now</h3>
+                        <p class="inquiry-subtitle">Connect with our luxury concierge for a private viewing.</p>
+                        
+                        <form class="inquiry-form">
+                            <input type="text" placeholder="Full Name" required>
+                            <input type="email" placeholder="Email Address" required>
+                            <input type="tel" placeholder="Phone Number" required>
+                            <textarea placeholder="Your Message" rows="4"></textarea>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                        </form>
+
+                        <div class="agent-compact" style="margin-top: 2rem; border-top: 1px solid var(--gray-100); padding-top: 1.5rem;">
+                            <div style="display: flex; gap: 1rem; align-items: center;">
+                                <img src="assets/img/gaurav-jain.png" alt="Gaurav Jain" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                                <div>
+                                    <h4 style="margin: 0; font-size: 1rem;">Gaurav Jain</h4>
+                                    <span style="font-size: 0.8rem; color: var(--gray-500);">Premium Specialist</span>
+                                </div>
+                            </div>
+                            <a href="tel:+919876543210" class="btn btn-outline" style="width: 100%; margin-top: 1rem; border-color: var(--gray-200);">
+                                <i data-lucide="phone" size="16"></i> Call Agent
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-ad" style="margin-top: 2rem;">
+                        <img src="assets/img/property-3.png" alt="Similar Ad" style="width: 100%; border-radius: var(--radius-lg); filter: brightness(0.7);">
+                        <div style="position: absolute; bottom: 1.5rem; left: 1.5rem; color: var(--white);">
+                            <h4 style="margin: 0;">Need Financing?</h4>
+                            <p style="font-size: 0.8rem; opacity: 0.8; margin: 0.25rem 0 1rem;">Check your eligibility instantly.</p>
+                            <a href="#" class="btn btn-primary btn-sm">Get Quote</a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Nexora Realty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="data/properties.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Dynamic Page Loader
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const propertyId = parseInt(urlParams.get('id'));
+            
+            // Re-Sync Data every time we load to ensure local additions are included
+            const localData = JSON.parse(localStorage.getItem('NEXORA_LOCAL_PROPERTIES') || '[]');
+            const allProperties = (typeof NEXORA_PROPERTIES !== 'undefined') ? [...NEXORA_PROPERTIES, ...localData] : localData;
+            
+            const property = allProperties.find(p => p.id === propertyId) || allProperties[0];
+            
+            if (property) {
+                document.getElementById('breadcrumb-title').textContent = property.title;
+                document.getElementById('detail-title').textContent = property.title;
+                document.getElementById('detail-price').textContent = property.price;
+                document.getElementById('detail-location').textContent = property.location + ", Pune";
+                document.getElementById('detail-type').textContent = property.type;
+                document.getElementById('detail-beds').textContent = property.beds;
+                document.getElementById('detail-baths').textContent = property.baths || "2";
+                document.getElementById('detail-parking').textContent = property.parking || "2";
+                document.getElementById('detail-sqft').textContent = property.sqft;
+                document.getElementById('main-property-image').src = property.image;
+
+                // Update Description
+                if (property.description) {
+                    document.getElementById('detail-description').textContent = property.description;
+                }
+
+                // Update Amenities Grid
+                const amenityGrid = document.querySelector('.amenities-grid');
+                if (amenityGrid && property.amenities && property.amenities.length > 0) {
+                    amenityGrid.innerHTML = property.amenities.map(item => `
+                        <div class="amenity"><i data-lucide="check-circle" size="16"></i> ${item}</div>
+                    `).join('');
+                }
+
+                // Update Growth Report dynamically
+                const corridorEl = document.getElementById('detail-corridor');
+                if (corridorEl) corridorEl.textContent = property.location;
+                
+                const milestoneList = document.querySelector('.insight-item ul');
+                if (milestoneList && property.location === 'Hinjewadi') {
+                    milestoneList.innerHTML = `
+                        <li style="display: flex; gap: 0.75rem; font-size: 0.9rem; padding: 0.5rem 0; color: var(--gray-700);"><i data-lucide="train" size="16" style="color: var(--primary);"></i> Metro Blue Line 2026 connectivity</li>
+                        <li style="display: flex; gap: 0.75rem; font-size: 0.9rem; padding: 0.5rem 0; color: var(--gray-700);"><i data-lucide="map" size="16" style="color: var(--primary);"></i> PMDAA Ring Road Phase 1 Integration</li>
+                        <li style="display: flex; gap: 0.75rem; font-size: 0.9rem; padding: 0.5rem 0; color: var(--gray-700);"><i data-lucide="maximize" size="16" style="color: var(--primary);"></i> Maan-Mahalunge Smart City Growth</li>
+                    `;
+                } else if (milestoneList && property.location === 'Kharadi') {
+                    milestoneList.innerHTML = `
+                        <li style="display: flex; gap: 0.75rem; font-size: 0.9rem; padding: 0.5rem 0; color: var(--gray-700);"><i data-lucide="train" size="16" style="color: var(--primary);"></i> Upcoming Metro to World Trade Center</li>
+                        <li style="display: flex; gap: 0.75rem; font-size: 0.9rem; padding: 0.5rem 0; color: var(--gray-700);"><i data-lucide="trending-up" size="16" style="color: var(--primary);"></i> EON IT Park Phase 3 Expansion</li>
+                        <li style="display: flex; gap: 0.75rem; font-size: 0.9rem; padding: 0.5rem 0; color: var(--gray-700);"><i data-lucide="building" size="16" style="color: var(--primary);"></i> New Builder Land Parcels (Godrej/VTP)</li>
+                    `;
+                }
+            }
+
+            if (window.lucide) window.lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

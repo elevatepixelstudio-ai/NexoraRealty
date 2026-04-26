@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Security Protocol: Check for Admin Session
+        if (localStorage.getItem('nexora_admin_logged_in') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <title>Nexora Admin | Property Manager</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+    <style>
+        body { background: #f0f2f5; font-family: 'Inter', sans-serif; }
+        .admin-page { min-height: 100vh; padding: 6rem 0; }
+        
+        .focused-frame {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .admin-header-simple { margin-bottom: 3rem; }
+        .admin-header-simple h1 { font-family: 'Outfit', sans-serif; font-size: 2.2rem; color: var(--dark); margin: 0; }
+        .admin-header-simple p { color: var(--gray-500); margin-top: 0.5rem; }
+
+        .dashboard-container {
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 650px;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .dashboard-sidebar {
+            background: #f8fafc;
+            padding: 3rem 2rem;
+            border-right: 1px solid var(--gray-100);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem;
+            border-radius: 1rem;
+            color: var(--gray-500);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .nav-item i { transition: transform 0.3s ease; }
+
+        .nav-item.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .nav-item.active i { transform: scale(1.1); }
+
+        .dashboard-content {
+            padding: 4rem;
+            position: relative;
+            overflow-y: auto;
+            max-height: 700px;
+        }
+
+        .form-section {
+            display: none;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        .form-section.active { display: block; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.75rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .field-group { margin-bottom: 1.5rem; }
+        .field-group label { 
+            display: block; 
+            font-size: 0.75rem; 
+            font-weight: 700; 
+            color: var(--gray-500); 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            margin-bottom: 0.75rem; 
+        }
+
+        .field-group input, 
+        .field-group select, 
+        .field-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: #fcfcfc;
+            border: 1px solid var(--gray-200);
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+
+        .field-group input:focus, 
+        .field-group select:focus, 
+        .field-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 15px rgba(184, 134, 11, 0.1);
+        }
+
+        .upload-zone {
+            border: 2px dashed var(--gray-200);
+            padding: 3rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            background: #fcfcfc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-zone:hover {
+            border-color: var(--primary);
+            background: rgba(184, 134, 11, 0.02);
+        }
+
+        .upload-icon {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .admin-actions {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .btn-large { padding: 1rem 2rem; font-size: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+    </style>
+</head>
+<body class="admin-page">
+
+    <div class="focused-frame">
+        <div class="admin-header-simple">
+            <div>
+                <a href="admin.html" style="color: var(--primary); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                    <i data-lucide="arrow-left" size="16"></i> BACK TO DASHBOARD
+                </a>
+                <h1>Publish Project</h1>
+                <p>Register a new developer partnership into the Nexora network.</p>
+            </div>
+        </div>
+
+        <div class="dashboard-container">
+            <div class="dashboard-sidebar">
+                <div class="nav-item active" onclick="switchTab('identity', this)">
+                    <i data-lucide="building"></i> Project Identity
+                </div>
+                <div class="nav-item" onclick="switchTab('strategy', this)">
+                    <i data-lucide="trending-up"></i> Market Strategy
+                </div>
+                <div class="nav-item" onclick="switchTab('config', this)">
+                    <i data-lucide="layout"></i> Configuration
+                </div>
+                <div class="nav-item" onclick="switchTab('media', this)">
+                    <i data-lucide="image"></i> Digital Assets
+                </div>
+                
+                <div style="margin-top: 4rem; padding: 1.5rem; background: rgba(184, 134, 11, 0.05); border-radius: 1.5rem;">
+                    <div style="font-size: 0.7rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem;">PUBLISH READINESS</div>
+                    <div style="height: 6px; background: #e2e8f0; border-radius: 10px; overflow: hidden;">
+                        <div id="readiness-bar" style="width: 25%; height: 100%; background: var(--primary); transition: width 0.5s ease;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <form id="unified-publish-form">
+                    
+                    <!-- Section 1: Identification -->
+                    <div class="form-section active" id="sec-identity">
+                        <div class="section-header">
+                            <h2>Project Identity</h2>
+                            <p>Basic developer information and project naming.</p>
+                        </div>
+                        <div class="input-grid">
+                            <div class="field-group">
+                                <label>Project Name</label>
+                                <input type="text" id="prop-title" placeholder="e.g. VTP Dolce Vita" onchange="updateProgress()">
+                            </div>
+                            <div class="field-group">
+                                <label>Developer Partner</label>
+                                <select id="prop-developer" onchange="updateProgress()">
+                                    <option>VTP Realty</option>
+                                    <option>Gera Developments</option>
+                                    <option>Godrej Properties</option>
+                                    <option>Kohinoor Group</option>
+                                    <option>Mahindra Lifespaces</option>
+                                    <option>Pristine Properties</option>
+                                </select>
+                            </div>
+                            <div class="field-group">
+                                <label>Kharadi Corridor</label>
+                                <select id="prop-location" onchange="updateProgress()">
+                                    <option>Kharadi Central</option>
+                                    <option>Upper Kharadi</option>
+                                    <option>Viman Nagar Ext.</option>
+                                    <option>Wagholi Annex</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="admin-actions">
+                            <div></div>
+                            <button type="button" class="btn btn-primary btn-large" onclick="switchTab('strategy')">Next: Market Strategy <i data-lucide="arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Strategy -->
+                    <div class="form-section" id="sec-strategy">
+                        <div class="section-header">
+                            <h2>Market Strategy</h2>
+                            <p>Pricing corridors and segmentation metrics.</p>
+                        </div>
+                        <div class="input-grid">
+                            <div class="field-group">
+                                <label>Property Segment</label>
+                                <select id="prop-segment" onchange="updateProgress()">
+                                    <option>VTP Lux (Ultra-Luxury)</option>
+                                    <option>VTP Homes (Premium)</option>
+                                    <option>Investment Grade</option>
+                                    <option>Executive Living</option>
+                                </select>
+                            </div>
+                            <div class="field-group">
+                                <label>Starting Price (Cr)</label>
+                                <input type="number" id="prop-price" step="0.1" placeholder="e.g. 1.25" onchange="updateProgress()">
+                            </div>
+                            <div class="field-group">
+                                <label>Status</label>
+                                <select id="prop-status" onchange="updateProgress()">
+                                    <option>Under Construction</option>
+                                    <option>New Launch</option>
+                                    <option>Ready to Move</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="admin-actions">
+                            <button type="button" class="btn btn-outline btn-large" onclick="switchTab('identity')">Back</button>
+                            <button type="button" class="btn btn-primary btn-large" onclick="switchTab('config')">Next: Configuration <i data-lucide="arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Configuration -->
+                    <div class="form-section" id="sec-config">
+                        <div class="section-header">
+                            <h2>Configuration & Lifestyle</h2>
+                            <p>Unit types and world-class amenities.</p>
+                        </div>
+                        <div class="input-grid" style="grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+                            <div class="field-group">
+                                <label>Available Units (BHK)</label>
+                                <input type="text" id="prop-beds" placeholder="e.g. 2, 3 & 4 BHK" onchange="updateProgress()">
+                            </div>
+                            <div class="field-group">
+                                <label>Total Area (Sq.Ft.)</label>
+                                <input type="number" id="prop-sqft" placeholder="e.g. 1250" onchange="updateProgress()">
+                            </div>
+                            <div class="field-group">
+                                <label>Bathrooms</label>
+                                <input type="number" id="prop-baths" placeholder="e.g. 2" onchange="updateProgress()">
+                            </div>
+                            <div class="field-group">
+                                <label>Parking Slots</label>
+                                <input type="number" id="prop-parking" placeholder="e.g. 2" onchange="updateProgress()">
+                            </div>
+                        </div>
+
+                        <div class="field-group" style="margin-top: 2rem;">
+                            <label>Lifestyle Features & Amenities</label>
+                            <div id="amenity-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; background: #f8fafc; padding: 2rem; border-radius: 1.5rem; border: 1px solid var(--gray-100);">
+                                <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--dark); cursor: pointer; text-transform: none; font-weight: 500; letter-spacing: 0; margin: 0;">
+                                    <input type="checkbox" class="amenity-check" value="Swimming Pool" style="width: 18px; height: 18px;"> Swimming Pool
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--dark); cursor: pointer; text-transform: none; font-weight: 500; letter-spacing: 0; margin: 0;">
+                                    <input type="checkbox" class="amenity-check" value="High-End Gym" style="width: 18px; height: 18px;"> High-End Gym
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--dark); cursor: pointer; text-transform: none; font-weight: 500; letter-spacing: 0; margin: 0;">
+                                    <input type="checkbox" class="amenity-check" value="Club House" style="width: 18px; height: 18px;"> Club House
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--dark); cursor: pointer; text-transform: none; font-weight: 500; letter-spacing: 0; margin: 0;">
+                                    <input type="checkbox" class="amenity-check" value="24/7 Security" style="width: 18px; height: 18px;"> 24/7 Security
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--dark); cursor: pointer; text-transform: none; font-weight: 500; letter-spacing: 0; margin: 0;">
+                                    <input type="checkbox" class="amenity-check" value="Power Backup" style="width: 18px; height: 18px;"> Power Backup
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--dark); cursor: pointer; text-transform: none; font-weight: 500; letter-spacing: 0; margin: 0;">
+                                    <input type="checkbox" class="amenity-check" value="Private Garden" style="width: 18px; height: 18px;"> Private Garden
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--dark); cursor: pointer; text-transform: none; font-weight: 500; letter-spacing: 0; margin: 0;">
+                                    <input type="checkbox" class="amenity-check" value="Home Automation" style="width: 18px; height: 18px;"> Home Automation
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--dark); cursor: pointer; text-transform: none; font-weight: 500; letter-spacing: 0; margin: 0;">
+                                    <input type="checkbox" class="amenity-check" value="Rooftop Lounge" style="width: 18px; height: 18px;"> Rooftop Lounge
+                                </label>
+                            </div>
+                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem; max-width: 400px;">
+                                <input type="text" id="custom-amenity-input" placeholder="Add custom amenity (e.g. EV Charging)" style="font-size: 0.8rem; padding: 0.5rem 1rem;">
+                                <button type="button" class="btn btn-outline" style="padding: 0.5rem 1rem;" onclick="addCustomAmenity('amenity-grid', 'custom-amenity-input', 'amenity-check')"><i data-lucide="plus"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="field-group" style="margin-top: 2rem;">
+                            <label>Full Property Description</label>
+                            <textarea id="prop-desc" rows="5" placeholder="Nestled in the prestigious Kharadi Corridor, this project features panoramic views and world-class architecture..." onchange="updateProgress()"></textarea>
+                        </div>
+                        <div class="admin-actions">
+                            <button type="button" class="btn btn-outline btn-large" onclick="switchTab('strategy')">Back</button>
+                            <button type="button" class="btn btn-primary btn-large" onclick="switchTab('media')">Next: Media <i data-lucide="arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: Media -->
+                    <div class="form-section" id="sec-media">
+                        <div class="section-header">
+                            <h2>Digital Assets</h2>
+                            <p>Upload Renders and brochures for AI analysis.</p>
+                        </div>
+                        <div class="upload-zone" onclick="document.getElementById('file-input').click()">
+                            <div class="upload-icon"><i data-lucide="cloud-upload" size="48"></i></div>
+                            <h3>Upload Project Collateral</h3>
+                            <p style="color: var(--gray-500);">Drop files here for AI processing.</p>
+                            <input type="file" id="file-input" style="display: none;" multiple onchange="updateProgress()">
+                        </div>
+                        <div class="admin-actions">
+                            <button type="button" class="btn btn-outline btn-large" onclick="switchTab('config')">Back</button>
+                            <button type="button" class="btn btn-primary btn-large" style="background: #10b981; border-color: #10b981;" onclick="handleSubmission()">
+                                <i data-lucide="check-circle"></i> Finalize & Publish
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId, el) {
+            // Update Nav
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            
+            // If el is provided (from sidebar click), use it. 
+            // If not (from Next button), find the corresponding nav item.
+            if (el) {
+                el.classList.add('active');
+            } else {
+                const indexMap = { 'identity': 0, 'strategy': 1, 'config': 2, 'media': 3 };
+                document.querySelectorAll('.nav-item')[indexMap[tabId]].classList.add('active');
+            }
+            
+            // Update Content
+            document.querySelectorAll('.form-section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(`sec-${tabId}`).classList.add('active');
+            
+            if (window.lucide) window.lucide.createIcons();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function addCustomAmenity(gridId, inputId, checkClass) {
+            const input = document.getElementById(inputId);
+            const val = input.value.trim();
+            if(!val) return;
+
+            const grid = document.getElementById(gridId);
+            const newLabel = document.createElement('label');
+            newLabel.style.cssText = "display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--dark); cursor: pointer; text-transform: none; font-weight: 500; letter-spacing: 0; margin: 0;";
+            newLabel.innerHTML = `<input type="checkbox" class="${checkClass}" value="${val}" checked style="width: 18px; height: 18px;"> ${val}`;
+            
+            grid.appendChild(newLabel);
+            input.value = '';
+            if (window.lucide) window.lucide.createIcons();
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const inputs = document.querySelectorAll('input, select, textarea');
+            let filled = 0;
+            inputs.forEach(input => {
+                if(input.value && input.value !== "") filled++;
+            });
+            const percent = (filled / inputs.length) * 100;
+            document.getElementById('readiness-bar').style.width = percent + '%';
+        }
+
+        function handleSubmission() {
+            const btn = document.querySelector('.btn-primary[style*="background: #10b981"]');
+            
+            // Validate basic info first
+            if(!document.getElementById('prop-title').value) {
+                switchTab('identity');
+                alert("Please provide at least a Project Name before AI analysis.");
+                return;
+            }
+
+            // Accelerated Premium Sequence
+            btn.innerHTML = '<i data-lucide="refresh-cw" class="animate-spin"></i> Analyzing Assets...';
+            lucide.createIcons();
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i data-lucide="brain"></i> Generating AI Insights...';
+                lucide.createIcons();
+                
+                setTimeout(() => {
+                    console.log("NEXORA DEBUG: Finalizing Publication...");
+                    publishData();
+                }, 800);
+            }, 800);
+        }
+
+        function publishData() {
+            try {
+                // Capture Selected Amenities
+                const selectedAmenities = [];
+                document.querySelectorAll('.amenity-check:checked').forEach(cb => {
+                    selectedAmenities.push(cb.value);
+                });
+
+                const newProject = {
+                    id: Date.now(),
+                    title: document.getElementById('prop-title')?.value || "Unnamed Kharadi Project",
+                    developer: document.getElementById('prop-developer')?.value || "VTP Realty",
+                    location: document.getElementById('prop-location')?.value || "Kharadi",
+                    segment: document.getElementById('prop-segment')?.value || "Premium",
+                    price: "₹" + (document.getElementById('prop-price')?.value || "1.5") + " Cr",
+                    beds: document.getElementById('prop-beds')?.value || "3 BHK",
+                    sqft: document.getElementById('prop-sqft')?.value || "1500",
+                    baths: document.getElementById('prop-baths')?.value || "3",
+                    parking: document.getElementById('prop-parking')?.value || "2",
+                    status: document.getElementById('prop-status')?.value || "New Launch",
+                    description: document.getElementById('prop-desc')?.value || "Elite residence in Pune's growing real estate market.",
+                    amenities: selectedAmenities,
+                    image: "assets/img/hero-bg.png",
+                    featured: true,
+                    badge: "AI VERIFIED"
+                };
+
+                const localData = JSON.parse(localStorage.getItem('NEXORA_LOCAL_PROPERTIES') || '[]');
+                localData.push(newProject);
+                localStorage.setItem('NEXORA_LOCAL_PROPERTIES', JSON.stringify(localData));
+
+                const successOverlay = document.getElementById('success-overlay');
+                if(successOverlay) {
+                    successOverlay.style.display = 'flex';
+                } else {
+                    alert("Project Published Successfully!");
+                    window.location.href = 'admin.html';
+                }
+                
+                if (window.lucide) window.lucide.createIcons();
+            } catch (err) {
+                console.error("NEXORA ERROR: Publication Failed", err);
+                alert("Publication Error: " + err.message);
+            }
+        }
+
+        // File Upload Ingest Logic
+        document.getElementById('file-input').addEventListener('change', function(e) {
+            const zone = document.querySelector('.upload-zone');
+            const files = e.target.files;
+            if(files.length > 0) {
+                zone.innerHTML = `
+                    <div style="color: #10b981;">
+                        <i data-lucide="check-circle" size="48"></i>
+                        <h3 style="margin-top: 1rem;">${files.length} Assets Ingested</h3>
+                        <p style="color: var(--gray-500);">${files[0].name} ${files.length > 1 ? '& more...' : ''}</p>
+                        <button type="button" class="btn btn-outline" style="margin-top: 1.5rem; padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="location.reload()">Clear & Re-upload</button>
+                    </div>
+                `;
+                if (window.lucide) window.lucide.createIcons();
+                updateProgress();
+            }
+        });
+
+        if (window.lucide) window.lucide.createIcons();
+    </script>
+</body>
+</html>

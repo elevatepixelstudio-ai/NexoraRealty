@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Saved Properties | Nexora Realty</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="listing-page">
+
+    <header id="header" class="scrolled">
+        <div class="container">
+            <nav class="nav-container" style="padding: 1rem 0;">
+                <a href="index.html" class="logo">
+                    <img src="assets/img/logo.png" alt="Nexora Realty Logo" style="height: 70px;">
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="saved-properties.html" class="active">My Saved</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <a href="#" class="btn btn-outline">Log In</a>
+                    <a href="#" class="btn btn-primary">List Property</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-head">
+            <div class="container">
+                <h1 class="page-title">My Client Portal</h1>
+                <p class="page-subtitle">Manage and track the premium properties you've shortlisted.</p>
+            </div>
+        </section>
+
+        <section class="properties-area">
+            <div class="container">
+                <div id="saved-properties-container" class="properties-grid">
+                    <!-- Loaded dynamically via script.js logic -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="assets/img/logo.png" alt="Nexora Logo" style="height: 60px; margin-bottom: 1.5rem; filter: brightness(0) invert(1);">
+                    <p style="color: var(--gray-400); line-height: 1.6;">Pune's 1st AI-Assisted Real Estate Advisory firm. Delivering IT-driven advantages and premium consultancy for elite investments.</p>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Locations</h4>
+                    <ul class="footer-links">
+                        <li><a href="properties.html?loc=Kharadi">Kharadi</a></li>
+                        <li><a href="properties.html?loc=Baner">Baner Hills</a></li>
+                        <li><a href="properties.html?loc=Hinjewadi">Hinjewadi</a></li>
+                        <li><a href="properties.html?loc=Viman%20Nagar">Viman Nagar</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Contact Info</h4>
+                    <ul class="footer-links">
+                        <li style="color: var(--gray-400); display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="map-pin" size="18"></i>
+                            Level 5, ICC Trade Tower, SB Road, Pune
+                        </li>
+                        <li style="color: var(--gray-400); display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="phone" size="18"></i>
+                            +91 98765 43210
+                        </li>
+                        <li style="color: var(--gray-400); display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="mail" size="18"></i>
+                            concierge@nexora.in
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Nexora Realty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="data/properties.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('saved-properties-container');
+            const favorites = JSON.parse(localStorage.getItem('nexora_favorites') || '[]');
+            
+            // Wait for script.js to be ready and allProperties to be populated
+            // Since we use global allProperties or INTERNAL_PROPERTIES
+            setTimeout(() => {
+                const savedProps = NEXORA_PROPERTIES.filter(p => favorites.includes(p.id));
+                
+                if (savedProps.length === 0) {
+                    container.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 5rem 0;">
+                            <i data-lucide="heart" size="64" style="color: var(--gray-200); margin-bottom: 1.5rem;"></i>
+                            <h2 style="font-size: 2rem; color: var(--gray-800);">No saved properties yet</h2>
+                            <p style="color: var(--gray-500); margin-top: 1rem;">Browse our <a href="properties.html" style="color: var(--primary);">premium listings</a> to start your search.</p>
+                        </div>
+                    `;
+                } else {
+                    const html = savedProps.map(property => {
+                        const insight = getAIInsight(property);
+                        
+                        return `
+                            <div class="property-card" onclick="window.location.href='property-details.html?id=${property.id}'">
+                                <div class="property-image">
+                                    <img src="${property.image}" alt="${property.title}">
+                                    <div class="ai-insight-badge" style="border-left: 3px solid ${insight.color};">
+                                        <i data-lucide="${insight.icon}" size="12"></i> ${insight.label}
+                                    </div>
+                                    <button class="btn-fav active" onclick="event.stopPropagation(); toggleFavorite(${property.id}, this); window.location.reload();">
+                                        <i data-lucide="heart" size="18" fill="currentColor"></i>
+                                    </button>
+                                </div>
+                                <div class="property-info">
+                                    <span class="property-type">${property.type}</span>
+                                    <h3 class="property-title">${property.title}</h3>
+                                    <p class="property-location"><i data-lucide="map-pin" size="16"></i> ${property.location}, Pune</p>
+                                    <div class="property-footer">
+                                        <span class="property-price">${property.price}</span>
+                                        <button class="btn-360" onclick="event.stopPropagation(); alert('Launching 360° Tour...')">
+                                            <i data-lucide="rotate-3d"></i> 360°
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                    container.innerHTML = html;
+                }
+                
+                if (window.lucide) window.lucide.createIcons();
+            }, 200);
+        });
+    </script>
+</body>
+</html>

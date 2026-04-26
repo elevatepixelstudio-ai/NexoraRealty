@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexora Realty | Premium Real Estate Pune</title>
+    <meta name="description"
+        content="Find your dream home in Pune with Nexora Realty. Luxury villas, modern apartments, and premium real estate consulting.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body class="home-page">
+
+    <header id="header">
+        <div class="container">
+            <nav class="nav-container">
+                <a href="#" class="logo">
+                    <img src="assets/img/logo.png" alt="Nexora Realty Logo" style="height: 110px;">
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="saved-properties.html">My Saved</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="login.html" class="btn btn-outline btn-sm">Log In</a>
+                    <a href="login.html" class="btn btn-primary btn-sm">Partner Portal</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-bg">
+                <img src="assets/img/hero-bg.png" alt="Luxury Real Estate Pune">
+            </div>
+
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-tagline">Pune's First AI assisted Real Estate Advisor Portal</span>
+                    <h1>Find Your <span>Modern</span> Sanctuary in Pune</h1>
+                    <p>Discover hand-picked premium properties across Pune's most coveted neighborhoods. From luxury
+                        villas to skyline penthouses.</p>
+
+                    <div class="search-container">
+                        <div class="search-field">
+                            <label>Location</label>
+                            <select id="home-search-location">
+                                <option value="all">All Locations</option>
+                                <option value="Koregaon Park">Koregaon Park</option>
+                                <option value="Viman Nagar">Viman Nagar</option>
+                                <option value="Kharadi">Kharadi</option>
+                                <option value="Wagholi">Wagholi</option>
+                            </select>
+                        </div>
+                        <div class="search-field">
+                            <label>Property Type</label>
+                            <select id="home-search-type">
+                                <option value="all">All Types</option>
+                                <option value="2 BHK">2 BHK</option>
+                                <option value="2.5 BHK">2.5 BHK</option>
+                                <option value="3 BHK">3 BHK</option>
+                                <option value="4 BHK">4 BHK</option>
+                                <option value="Luxury Villa">Luxury Villa</option>
+                                <option value="Penthouse">Penthouse</option>
+                                <option value="Modern Apartment">Modern Apartment</option>
+                            </select>
+                        </div>
+                        <div class="search-field">
+                            <label>Budget</label>
+                            <select id="home-search-budget">
+                                <option value="all">Any Price</option>
+                                <option value="0-1.5">₹1Cr - ₹1.5Cr</option>
+                                <option value="1.5-2">₹1.5Cr - ₹2Cr</option>
+                                <option value="2-2.5">₹2Cr - ₹2.5Cr</option>
+                                <option value="2.5-3">₹2.5Cr - ₹3Cr</option>
+                                <option value="3-4">₹3Cr - ₹4Cr</option>
+                                <option value="4-5">₹4Cr - ₹5Cr</option>
+                                <option value="5-10">₹5Cr - ₹10Cr</option>
+                                <option value="10-20">₹10Cr - ₹20Cr</option>
+                                <option value="20-above">₹20Cr+</option>
+                            </select>
+                        </div>
+                        <button class="search-btn" id="home-search-btn">
+                            <i data-lucide="search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Properties Section -->
+        <section class="section" id="properties">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Exclusive Listings</span>
+                    <h2 class="section-title">Featured Properties</h2>
+                </div>
+
+                <div class="properties-grid" id="featured-properties-container">
+                    <!-- Properties will be loaded dynamically from JSON -->
+                </div>
+
+                <div style="text-align: center; margin-top: 4rem;">
+                    <a href="properties.html" class="btn btn-outline">View All Properties</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section" id="about" style="background-color: var(--white);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Why Nexora Realty</span>
+                    <h2 class="section-title">Redefining Real Estate Excellence</h2>
+                </div>
+
+                <div class="features-container">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i data-lucide="shield-check"></i>
+                        </div>
+                        <h3>Trusted Expertise</h3>
+                        <p>Decades of experience in Pune's premium real estate market, ensuring secure and transparent
+                            transactions.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i data-lucide="gem"></i>
+                        </div>
+                        <h3>Elite Portfolio</h3>
+                        <p>Access to off-market listings and the most exclusive residential projects in the city.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i data-lucide="user-check"></i>
+                        </div>
+                        <h3>Personalized Concierge</h3>
+                        <p>End-to-end support from property viewing to legal documentation and interior setup.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Price Predictor Section -->
+        <section class="section ai-predictor-section"
+            style="background: var(--dark); color: var(--white); padding: 6rem 0;">
+            <div class="container">
+                <div class="predictor-grid-layout">
+                    <div class="predictor-content">
+                        <span class="section-subtitle" style="color: var(--primary);">Nexora IQ</span>
+                        <h2 class="section-title" style="color: var(--white); text-align: left; margin-bottom: 2rem;">
+                            Pune Property <span style="color: var(--primary);">AI Based Price Forecaster</span></h2>
+                        <p style="color: var(--gray-400); font-size: 1.15rem; line-height: 1.8; margin-bottom: 2.5rem;">
+                            Our proprietary model analyzes 10+ years of historical appreciation across Pune's prime
+                            corridors to predict future market values.
+                        </p>
+                        <div class="predictor-card-ui">
+                            <div class="predictor-form">
+                                <div class="form-row-predictor">
+                                    <div class="input-group-predictor">
+                                        <label>Locality</label>
+                                        <select id="predict-locality">
+                                            <option value="Baner">Baner Hills</option>
+                                            <option value="Kharadi">Kharadi IT Park</option>
+                                            <option value="Hinjewadi">Hinjewadi Phase 1</option>
+                                            <option value="Koregaon Park">Koregaon Park</option>
+                                            <option value="Viman Nagar">Viman Nagar</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group-predictor">
+                                        <label>Property Type</label>
+                                        <select id="predict-type">
+                                            <option value="2">2 BHK Apartment</option>
+                                            <option value="3">3 BHK Apartment</option>
+                                            <option value="4">4 BHK Luxury</option>
+                                            <option value="villa">Luxury Villa</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button id="run-prediction" class="btn btn-primary"
+                                    style="width: 100%; margin-top: 1.5rem; justify-content: center; padding: 1.25rem;">
+                                    <i data-lucide="sparkles"></i> Predict Future Value
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="predictor-results" id="prediction-output">
+                        <div class="results-placeholder">
+                            <div class="placeholder-icon-circle">
+                                <i data-lucide="brain-circuit" size="48"></i>
+                            </div>
+                            <h3>AI Engine Ready</h3>
+                            <p>Select your criteria and run the analysis to generate a 2027-2028 appreciation forecast.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section" style="background-color: var(--gray-50);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Client Stories</span>
+                    <h2 class="section-title">What Our Clients Say</h2>
+                </div>
+
+                <div class="properties-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                    <!-- Testimonial 1 -->
+                    <div class="feature-box" style="text-align: left; padding: 2.5rem;">
+                        <div style="color: var(--primary); margin-bottom: 1.5rem; display: flex; gap: 0.25rem;">
+                            <i data-lucide="star" fill="currentColor" size="18"></i>
+                            <i data-lucide="star" fill="currentColor" size="18"></i>
+                            <i data-lucide="star" fill="currentColor" size="18"></i>
+                            <i data-lucide="star" fill="currentColor" size="18"></i>
+                            <i data-lucide="star" fill="currentColor" size="18"></i>
+                        </div>
+                        <p
+                            style="font-style: italic; margin-bottom: 2rem; color: var(--gray-600); font-size: 1.125rem;">
+                            "Nexora made finding our dream villa in Baner Hills an absolute breeze. Their attention to
+                            detail and market knowledge is unmatched in Pune."</p>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div
+                                style="width: 50px; height: 50px; border-radius: 50%; background: var(--gray-200); display: flex; align-items: center; justify-content: center;">
+                                <i data-lucide="user" size="24"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-weight: 700;">Aditya Sharma</h4>
+                                <p style="font-size: 0.875rem; color: var(--gray-400);">CEO, TechFlow Pune</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="feature-box" style="text-align: left; padding: 2.5rem;">
+                        <div style="color: var(--primary); margin-bottom: 1.5rem; display: flex; gap: 0.25rem;">
+                            <i data-lucide="star" fill="currentColor" size="18"></i>
+                            <i data-lucide="star" fill="currentColor" size="18"></i>
+                            <i data-lucide="star" fill="currentColor" size="18"></i>
+                            <i data-lucide="star" fill="currentColor" size="18"></i>
+                            <i data-lucide="star" fill="currentColor" size="18"></i>
+                        </div>
+                        <p
+                            style="font-style: italic; margin-bottom: 2rem; color: var(--gray-600); font-size: 1.125rem;">
+                            "Professionalism at its best. The team helped us secure a penthouse in Koregaon Park within
+                            weeks. Highly recommended for premium searches."</p>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div
+                                style="width: 50px; height: 50px; border-radius: 50%; background: var(--gray-200); display: flex; align-items: center; justify-content: center;">
+                                <i data-lucide="user" size="24"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-weight: 700;">Meera Kulkarni</h4>
+                                <p style="font-size: 0.875rem; color: var(--gray-400);">Design Consultant</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Real Estate Insights</span>
+                    <h2 class="section-title">Pune Property Trends</h2>
+                </div>
+
+                <div class="properties-grid">
+                    <div class="property-card" style="border: none; box-shadow: none;">
+                        <div class="property-image" style="height: 200px; border-radius: var(--radius-lg);">
+                            <img src="assets/img/property-1.png" alt="Blog 1">
+                        </div>
+                        <div style="padding: 1.5rem 0;">
+                            <span class="property-type">MARKET ANALYSIS</span>
+                            <h3 class="property-title">Why Baner Hills is the New Destination for Luxury</h3>
+                            <p style="color: var(--gray-500); margin-bottom: 1.5rem;">An in-depth look at the rising
+                                demand for hill-side villas in West Pune...</p>
+                            <a href="#"
+                                style="color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+                                Read More <i data-lucide="arrow-right" size="16"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="property-card" style="border: none; box-shadow: none;">
+                        <div class="property-image" style="height: 200px; border-radius: var(--radius-lg);">
+                            <img src="assets/img/property-2.png" alt="Blog 2">
+                        </div>
+                        <div style="padding: 1.5rem 0;">
+                            <span class="property-type">LIFESTYLE</span>
+                            <h3 class="property-title">Top 5 Smart Home Features in Pune Penthouses</h3>
+                            <p style="color: var(--gray-500); margin-bottom: 1.5rem;">How automation is transforming
+                                luxury living in the city's skyline...</p>
+                            <a href="#"
+                                style="color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+                                Read More <i data-lucide="arrow-right" size="16"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="property-card" style="border: none; box-shadow: none;">
+                        <div class="property-image" style="height: 200px; border-radius: var(--radius-lg);">
+                            <img src="assets/img/property-3.png" alt="Blog 3">
+                        </div>
+                        <div style="padding: 1.5rem 0;">
+                            <span class="property-type">INVESTMENT</span>
+                            <h3 class="property-title">Commercial Growth vs Residential Demand in 2026</h3>
+                            <p style="color: var(--gray-500); margin-bottom: 1.5rem;">Understanding the shifting
+                                dynamics of Pune's real estate investment landscape...</p>
+                            <a href="#"
+                                style="color: var(--primary); font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+                                Read More <i data-lucide="arrow-right" size="16"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section"
+            style="background: linear-gradient(to right, var(--primary), var(--secondary)); color: var(--white);">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 4rem;">
+                    <div style="flex: 1;">
+                        <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 1.5rem;">Ready to find your next
+                            home?</h2>
+                        <p style="font-size: 1.25rem; opacity: 0.9;">Talk to our expert consultants today and get a
+                            personalized property tour.</p>
+                    </div>
+                    <div style="display: flex; gap: 1.5rem;">
+                        <a href="#" class="btn" style="background: var(--white); color: var(--primary);">Contact Us</a>
+                        <a href="#" class="btn" style="border: 2px solid var(--white); color: var(--white);">Schedule a
+                            Call</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Trust Section -->
+    <section class="section trust-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="trust-title">YOU CAN TRUST US</h2>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon-circle">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <div class="stat-number">1008</div>
+                    <div class="stat-label-container">
+                        <span class="stat-accent">|</span>
+                        <span class="stat-label">HAPPY CUSTOMER</span>
+                        <span class="stat-accent">|</span>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-icon-circle">
+                        <i data-lucide="home"></i>
+                    </div>
+                    <div class="stat-number">1 300</div>
+                    <div class="stat-label-container">
+                        <span class="stat-accent">|</span>
+                        <span class="stat-label">PROPERTIES IN STOCK</span>
+                        <span class="stat-accent">|</span>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-icon-circle">
+                        <i data-lucide="flag"></i>
+                    </div>
+                    <div class="stat-number">146</div>
+                    <div class="stat-label-container">
+                        <span class="stat-accent">|</span>
+                        <span class="stat-label">CITY REGISTERED</span>
+                        <span class="stat-accent">|</span>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <div class="stat-icon-circle">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <div class="stat-number">1023</div>
+                    <div class="stat-label-container">
+                        <span class="stat-accent">|</span>
+                        <span class="stat-label">DEALER BRANCHES</span>
+                        <span class="stat-accent">|</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-about">
+                    <a href="#" class="logo" style="margin-bottom: 1.5rem;">
+                        <img src="assets/img/logo.png" alt="Nexora Realty Logo"
+                            style="height: 110px; filter: brightness(0) invert(1);">
+                    </a>
+                    <p>Elevating the real estate experience in Pune with modern solutions and premium service.</p>
+                    <div class="social-links">
+                        <a href="#"><i data-lucide="instagram"></i></a>
+                        <a href="#"><i data-lucide="facebook"></i></a>
+                        <a href="#"><i data-lucide="linkedin"></i></a>
+                        <a href="#"><i data-lucide="twitter"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Locations</h4>
+                    <ul class="footer-links">
+                        <li><a href="properties.html?loc=Kharadi">Kharadi</a></li>
+
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Contact Info</h4>
+                    <ul class="footer-links">
+                        <li style="color: var(--gray-400); display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="map-pin" size="18"></i>
+                            Bootstart,2nd Floor,Pride Icon Above to Atithi Veg Restaurant, Kharadi, Pune
+                        </li>
+                        <li style="color: var(--gray-400); display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="phone" size="18"></i>
+                            +91 8123440245
+                        </li>
+                        <li style="color: var(--gray-400); display: flex; align-items: center; gap: 0.5rem;">
+                            <i data-lucide="mail" size="18"></i>
+                            nexorarealtyinfo@gmail.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Nexora Realty. All rights reserved. Designed with premium aesthetics.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Concierge Floating Widget -->
+    <div class="ai-concierge-widget">
+        <div id="ai-chat-window" class="chat-window">
+            <div class="chat-header">
+                <div class="agent-info">
+                    <div class="agent-avatar">AI</div>
+                    <div>
+                        <h4 style="margin:0; font-size: 0.9rem;">Nexora AI Consultant</h4>
+                        <span style="font-size: 0.7rem; color: #4ade80;">● Online | 24/7</span>
+                    </div>
+                </div>
+                <button id="close-chat" style="background: none; border: none; color: white; cursor: pointer;"><i
+                        data-lucide="x" size="16"></i></button>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="ai-msg">Namaste! I'm your Nexora AI assistant. Looking for a premium property in Pune? I can
+                    help you find the best deals in Baner, KP, or Viman Nagar.</div>
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="chat-input" placeholder="Ask about property prices...">
+                <button class="send-btn" id="send-chat"><i data-lucide="send" size="18"></i></button>
+            </div>
+        </div>
+        <button id="ai-trigger" class="ai-trigger-btn">
+            <i data-lucide="bot"></i>
+            <span class="pulse"></span>
+        </button>
+    </div>
+
+    <script src="data/properties.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

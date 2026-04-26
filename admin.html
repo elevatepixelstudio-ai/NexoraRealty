@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Security Protocol: Check for Admin Session
+        if (localStorage.getItem('nexora_admin_logged_in') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <title>Nexora Admin Console</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+    <style>
+        body { background: #f4f7f6; font-family: 'Inter', sans-serif; }
+        .admin-sidebar { width: 280px; background: var(--dark); height: 100vh; position: fixed; left: 0; top: 0; color: white; padding: 2rem; }
+        .admin-main { margin-left: 280px; padding: 3rem; }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; }
+        .property-row { background: white; padding: 1.5rem; border-radius: var(--radius-lg); display: grid; grid-template-columns: 80px 1fr 1fr 1fr 150px; gap: 2rem; align-items: center; margin-bottom: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .property-row img { width: 60px; height: 60px; border-radius: var(--radius-md); object-fit: cover; }
+        .admin-card { background: white; padding: 2rem; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); }
+        .export-box { background: #1e1e1e; color: #4ade80; padding: 1.5rem; border-radius: var(--radius-lg); font-family: 'Courier New', Courier, monospace; font-size: 0.8rem; margin-top: 2rem; overflow-x: auto; display: none; }
+        .status-pill { padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+        .status-active { background: rgba(74, 222, 128, 0.1); color: #4ade80; }
+        .btn-danger { background: #fee2e2; color: #ef4444; border: none; padding: 0.5rem; border-radius: var(--radius-md); cursor: pointer; }
+        .btn-edit { background: #e0f2fe; color: #0ea5e9; border: none; padding: 0.5rem; border-radius: var(--radius-md); cursor: pointer; margin-right: 0.5rem; }
+        
+        /* Modal Styles */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 2000; }
+        .modal-card { background: white; padding: 2.5rem; border-radius: 2rem; width: 95%; max-width: 800px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; position: sticky; top: 0; background: white; z-index: 10; padding-bottom: 1rem; border-bottom: 1px solid var(--gray-100); }
+        .edit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .input-group { margin-bottom: 1rem; }
+        .input-group label { display: block; font-size: 0.75rem; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+        .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 1rem; border: 1px solid var(--gray-200); border-radius: 0.75rem; font-size: 0.95rem; }
+        
+        .amenity-grid-edit { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; background: #f8fafc; padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--gray-100); margin-top: 0.5rem; }
+        .amenity-item-edit { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--dark); cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div id="edit-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2 id="modal-title" style="font-family: var(--font-outfit); font-size: 1.75rem; margin: 0;">Edit Project Profile</h2>
+                <button class="btn-danger" onclick="closeModal()" style="border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i data-lucide="x"></i></button>
+            </div>
+            <form id="edit-form">
+                <input type="hidden" id="edit-id">
+                
+                <h4 style="font-size: 0.8rem; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;">01. Core Identity</h4>
+                <div class="edit-grid">
+                    <div class="input-group">
+                        <label>Property Title</label>
+                        <input type="text" id="edit-title" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Developer</label>
+                        <input type="text" id="edit-developer">
+                    </div>
+                    <div class="input-group">
+                        <label>Market Price</label>
+                        <input type="text" id="edit-price" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Location Corridor</label>
+                        <select id="edit-location">
+                            <option value="Kharadi Central">Kharadi Central</option>
+                            <option value="Upper Kharadi">Upper Kharadi</option>
+                            <option value="Viman Nagar Ext.">Viman Nagar Ext.</option>
+                            <option value="Wagholi Annex">Wagholi Annex</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h4 style="font-size: 0.8rem; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin: 2rem 0 1.5rem;">02. Strategy & Specs</h4>
+                <div class="edit-grid">
+                    <div class="input-group">
+                        <label>Property Segment</label>
+                        <select id="edit-segment">
+                            <option value="VTP Lux (Ultra-Luxury)">VTP Lux (Ultra-Luxury)</option>
+                            <option value="VTP Homes (Premium)">VTP Homes (Premium)</option>
+                            <option value="Investment Grade">Investment Grade</option>
+                            <option value="Executive Living">Executive Living</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Project Status</label>
+                        <select id="edit-status">
+                            <option value="Under Construction">Under Construction</option>
+                            <option value="New Launch">New Launch</option>
+                            <option value="Ready to Move">Ready to Move</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Unit Config (BHK)</label>
+                        <input type="text" id="edit-beds">
+                    </div>
+                    <div class="input-group">
+                        <label>Total Area (Sq.Ft.)</label>
+                        <input type="number" id="edit-sqft">
+                    </div>
+                    <div class="input-group">
+                        <label>Bathrooms</label>
+                        <input type="number" id="edit-baths">
+                    </div>
+                    <div class="input-group">
+                        <label>Parking Slots</label>
+                        <input type="number" id="edit-parking">
+                    </div>
+                </div>
+
+                <h4 style="font-size: 0.8rem; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin: 2rem 0 1.5rem;">03. Lifestyle Matrix</h4>
+                <div class="input-group">
+                    <label>Selected Amenities</label>
+                    <div id="amenity-grid-edit" class="amenity-grid-edit">
+                        <label class="amenity-item-edit"><input type="checkbox" class="edit-amenity-check" value="Swimming Pool"> Swimming Pool</label>
+                        <label class="amenity-item-edit"><input type="checkbox" class="edit-amenity-check" value="High-End Gym"> High-End Gym</label>
+                        <label class="amenity-item-edit"><input type="checkbox" class="edit-amenity-check" value="Club House"> Club House</label>
+                        <label class="amenity-item-edit"><input type="checkbox" class="edit-amenity-check" value="24/7 Security"> 24/7 Security</label>
+                        <label class="amenity-item-edit"><input type="checkbox" class="edit-amenity-check" value="Power Backup"> Power Backup</label>
+                        <label class="amenity-item-edit"><input type="checkbox" class="edit-amenity-check" value="Private Garden"> Private Garden</label>
+                        <label class="amenity-item-edit"><input type="checkbox" class="edit-amenity-check" value="Home Automation"> Home Automation</label>
+                        <label class="amenity-item-edit"><input type="checkbox" class="edit-amenity-check" value="Rooftop Lounge"> Rooftop Lounge</label>
+                    </div>
+                    <div style="margin-top: 1rem; display: flex; gap: 0.5rem; max-width: 400px;">
+                        <input type="text" id="custom-amenity-edit" placeholder="Add custom amenity..." style="padding: 0.5rem; font-size: 0.8rem;">
+                        <button type="button" class="btn btn-outline" style="padding: 0.5rem 1rem;" onclick="addCustomAmenity('amenity-grid-edit', 'custom-amenity-edit', 'edit-amenity-check')"><i data-lucide="plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="input-group" style="margin-top: 2rem;">
+                    <label>Property Description</label>
+                    <textarea id="edit-desc" rows="4"></textarea>
+                </div>
+
+                <div style="margin-top: 3rem; display: flex; gap: 1.5rem; padding-top: 2rem; border-top: 1px solid var(--gray-100);">
+                    <button type="button" class="btn btn-outline" style="flex: 1; padding: 1.25rem;" onclick="closeModal()">Discard Changes</button>
+                    <button type="button" class="btn btn-primary" style="flex: 1; padding: 1.25rem;" onclick="saveEdit()">Commit Portfolio Updates</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <aside class="admin-sidebar">
+        <img src="assets/img/logo.png" alt="Logo" style="height: 50px; margin-bottom: 3rem; filter: brightness(0) invert(1);">
+        <nav style="display: flex; flex-direction: column; gap: 1rem;">
+            <a href="#" class="btn btn-primary" style="justify-content: flex-start; background: var(--primary);"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+            <a href="submit-property.html" class="btn btn-outline" style="justify-content: flex-start; color: white; border-color: rgba(255,255,255,0.1);"><i data-lucide="plus-circle"></i> Add Project</a>
+            <a href="index.html" class="btn btn-outline" style="justify-content: flex-start; color: white; border-color: rgba(255,255,255,0.1);"><i data-lucide="external-link"></i> View Website</a>
+        </nav>
+    </aside>
+
+    <main class="admin-main">
+        <div class="admin-header">
+            <div>
+                <h1 style="font-family: var(--font-outfit); font-size: 2.5rem; margin: 0;">Admin Console</h1>
+                <p style="color: var(--gray-500);">Manage your Kharadi developer partnerships.</p>
+            </div>
+            <button class="btn btn-primary" onclick="exportData()"><i data-lucide="save"></i> Sync Database</button>
+        </div>
+
+        <div class="admin-card">
+            <h3 style="margin-bottom: 2rem;">Active Projects (<span id="total-count">0</span>)</h3>
+            <div id="admin-property-list">
+                <!-- Properties loaded here -->
+            </div>
+        </div>
+
+        <div id="export-container" class="export-box">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; color: var(--gray-400);">
+                <span>COPY THIS CODE TO data/properties.js</span>
+                <button onclick="copyToClipboard()" style="background: none; border: none; color: var(--primary); cursor: pointer;">Copy Code</button>
+            </div>
+            <pre id="export-code"></pre>
+        </div>
+    </main>
+
+    <script src="data/properties.js"></script>
+    <script>
+        const localData = JSON.parse(localStorage.getItem('NEXORA_LOCAL_PROPERTIES') || '[]');
+        let currentData = [...NEXORA_PROPERTIES, ...localData];
+
+        function renderAdminList() {
+            const container = document.getElementById('admin-property-list');
+            document.getElementById('total-count').textContent = currentData.length;
+            
+            container.innerHTML = currentData.map(p => `
+                <div class="property-row">
+                    <img src="${p.image}" alt="">
+                    <div>
+                        <div style="font-weight: 700; color: var(--gray-800);">${p.title}</div>
+                        <div style="font-size: 0.8rem; color: var(--gray-500);">${p.developer || 'Builder Partner'}</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.85rem; color: var(--gray-600);"><i data-lucide="map-pin" size="14"></i> ${p.location}</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: 700; color: var(--primary);">${p.price}</div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                        <button class="btn-edit" onclick="editProp(${p.id})"><i data-lucide="edit" size="16"></i></button>
+                        <button class="btn-danger" onclick="deleteProp(${p.id})"><i data-lucide="trash-2" size="16"></i></button>
+                    </div>
+                </div>
+            `).join('');
+            
+            if (window.lucide) window.lucide.createIcons();
+        }
+
+        function editProp(id) {
+            const prop = currentData.find(p => p.id == id);
+            if (!prop) return;
+
+            document.getElementById('edit-id').value = prop.id;
+            document.getElementById('edit-title').value = prop.title;
+            document.getElementById('edit-developer').value = prop.developer || '';
+            document.getElementById('edit-price').value = prop.price;
+            document.getElementById('edit-location').value = prop.location;
+            
+            // New Fields
+            document.getElementById('edit-segment').value = prop.segment || 'Premium';
+            document.getElementById('edit-status').value = prop.status || 'New Launch';
+            document.getElementById('edit-beds').value = prop.beds || '3 BHK';
+            document.getElementById('edit-sqft').value = prop.sqft || '1500';
+            document.getElementById('edit-baths').value = prop.baths || '2';
+            document.getElementById('edit-parking').value = prop.parking || '2';
+            document.getElementById('edit-desc').value = prop.description || '';
+
+            // Reset and Check Amenities
+            const checks = document.querySelectorAll('.edit-amenity-check');
+            checks.forEach(cb => {
+                cb.checked = (prop.amenities || []).includes(cb.value);
+            });
+
+            document.getElementById('edit-modal').style.display = 'flex';
+            if (window.lucide) window.lucide.createIcons();
+        }
+
+        function saveEdit() {
+            const id = document.getElementById('edit-id').value;
+            const index = currentData.findIndex(p => p.id == id);
+            
+            if (index !== -1) {
+                const selectedAmenities = [];
+                document.querySelectorAll('.edit-amenity-check:checked').forEach(cb => {
+                    selectedAmenities.push(cb.value);
+                });
+
+                currentData[index] = {
+                    ...currentData[index],
+                    title: document.getElementById('edit-title').value,
+                    developer: document.getElementById('edit-developer').value,
+                    price: document.getElementById('edit-price').value,
+                    location: document.getElementById('edit-location').value,
+                    segment: document.getElementById('edit-segment').value,
+                    status: document.getElementById('edit-status').value,
+                    beds: document.getElementById('edit-beds').value,
+                    sqft: document.getElementById('edit-sqft').value,
+                    baths: document.getElementById('edit-baths').value,
+                    parking: document.getElementById('edit-parking').value,
+                    description: document.getElementById('edit-desc').value,
+                    amenities: selectedAmenities
+                };
+                
+                // 2. Persist to Local Storage (if it's a local project)
+                const localData = JSON.parse(localStorage.getItem('NEXORA_LOCAL_PROPERTIES') || '[]');
+                const localIndex = localData.findIndex(p => p.id == id);
+                if (localIndex !== -1) {
+                    localData[localIndex] = currentData[index];
+                    localStorage.setItem('NEXORA_LOCAL_PROPERTIES', JSON.stringify(localData));
+                }
+
+                renderAdminList();
+                closeModal();
+                // Removed auto-export to keep UI clean
+                alert('Project Portfolio Updated! Refreshing to confirm...');
+                location.reload();
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('edit-modal').style.display = 'none';
+        }
+
+        function addCustomAmenity(gridId, inputId, checkClass) {
+            const input = document.getElementById(inputId);
+            const val = input.value.trim();
+            if(!val) return;
+
+            const grid = document.getElementById(gridId);
+            const newLabel = document.createElement('label');
+            newLabel.className = "amenity-item-edit";
+            newLabel.innerHTML = `<input type="checkbox" class="${checkClass}" value="${val}" checked> ${val}`;
+            
+            grid.appendChild(newLabel);
+            input.value = '';
+            if (window.lucide) window.lucide.createIcons();
+        }
+
+        function deleteProp(id) {
+            if(confirm('Are you sure you want to remove this project?')) {
+                // 1. Remove from session data
+                currentData = currentData.filter(p => p.id !== id);
+                
+                // 2. Remove from Local Storage
+                const localData = JSON.parse(localStorage.getItem('NEXORA_LOCAL_PROPERTIES') || '[]');
+                const updatedLocalData = localData.filter(p => p.id !== id);
+                localStorage.setItem('NEXORA_LOCAL_PROPERTIES', JSON.stringify(updatedLocalData));
+                
+                // 3. Update UI and Refresh
+                renderAdminList();
+                // Removed auto-export to keep UI clean
+                alert('Project officially removed. Refreshing database...');
+                location.reload();
+            }
+        }
+
+        function exportData() {
+            const container = document.getElementById('export-container');
+            const codeBox = document.getElementById('export-code');
+            
+            const code = `/**
+ * NEXORA REALTY - OFFICIAL PROPERTY DATABASE
+ * Updated via Admin Console on ${new Date().toLocaleDateString()}
+ */
+
+const NEXORA_PROPERTIES = ${JSON.stringify(currentData, null, 4)};`;
+            
+            codeBox.textContent = code;
+            container.style.display = 'block';
+            // Removed auto-scroll for a smoother experience
+        }
+
+        function copyToClipboard() {
+            const code = document.getElementById('export-code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied! Now open data/properties.js, select all, and paste.');
+            });
+        }
+
+        renderAdminList();
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+[
+    {
+        "id": 1,
+        "title": "The Zenith Residence",
+        "type": "Luxury Villa",
+        "location": "Baner Hills",
+        "price": "₹12.5 Cr",
+        "badge": "FOR SALE",
+        "image": "assets/img/property-1.png",
+        "beds": 5,
+        "baths": 6,
+        "sqft": 4500,
+        "featured": true
+    },
+    {
+        "id": 2,
+        "title": "Aether Sky Suites",
+        "type": "Modern Apartment",
+        "location": "Koregaon Park",
+        "price": "₹8.2 Cr",
+        "badge": "FOR SALE",
+        "image": "assets/img/property-2.png",
+        "beds": 3,
+        "baths": 4,
+        "sqft": 2800,
+        "featured": true
+    },
+    {
+        "id": 3,
+        "title": "Horizon View Penthouse",
+        "type": "Penthouse",
+        "location": "Viman Nagar",
+        "price": "₹15.0 Cr",
+        "badge": "NEW LISTING",
+        "image": "assets/img/property-3.png",
+        "beds": 4,
+        "baths": 5,
+        "sqft": 3600,
+        "featured": true
+    },
+    {
+        "id": 4,
+        "title": "Silver Oak Apartments",
+        "type": "2 BHK",
+        "location": "Baner Hills",
+        "price": "₹1.2 Cr",
+        "badge": "FOR SALE",
+        "image": "assets/img/property-1.png",
+        "beds": 2,
+        "baths": 2,
+        "sqft": 1100,
+        "featured": false
+    },
+    {
+        "id": 5,
+        "title": "Emerald Heights",
+        "type": "3 BHK",
+        "location": "Viman Nagar",
+        "price": "₹2.5 Cr",
+        "badge": "FOR SALE",
+        "image": "assets/img/property-2.png",
+        "beds": 3,
+        "baths": 3,
+        "sqft": 1800,
+        "featured": false
+    },
+    {
+        "id": 6,
+        "title": "Prestige Signature",
+        "type": "4 BHK",
+        "location": "Koregaon Park",
+        "price": "₹4.8 Cr",
+        "badge": "NEW LISTING",
+        "image": "assets/img/property-3.png",
+        "beds": 4,
+        "baths": 4,
+        "sqft": 2500,
+        "featured": false
+    }
+]
