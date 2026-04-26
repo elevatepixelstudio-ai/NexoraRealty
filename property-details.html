@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property Details | Nexora Realty</title>
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    
+
     <!-- CSS -->
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body class="details-page">
 
     <header id="header" class="scrolled">
@@ -24,14 +28,14 @@
                 <a href="index.html" class="logo">
                     <img src="assets/img/logo.png" alt="Nexora Realty Logo" style="height: 70px;">
                 </a>
-                
+
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="properties.html">Properties</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
-                
+
                 <div class="nav-actions">
                     <a href="saved-properties.html" class="nav-icon-link" title="My Saved">
                         <i data-lucide="heart" size="20"></i>
@@ -48,8 +52,8 @@
         <div class="container">
             <!-- Breadcrumbs -->
             <div class="breadcrumbs" style="margin: 2rem 0; color: var(--gray-500); font-size: 0.9rem;">
-                <a href="index.html" style="color: var(--primary);">Home</a> / 
-                <a href="properties.html" style="color: var(--primary);">Properties</a> / 
+                <a href="index.html" style="color: var(--primary);">Home</a> /
+                <a href="properties.html" style="color: var(--primary);">Properties</a> /
                 <span id="breadcrumb-title">Property Details</span>
             </div>
 
@@ -58,7 +62,8 @@
                 <div class="details-main">
                     <!-- Gallery Section -->
                     <div class="gallery-hero">
-                        <img id="main-property-image" src="assets/img/hero-bg.png" alt="Property Image" class="main-img">
+                        <img id="main-property-image" src="assets/img/hero-bg.png" alt="Property Image"
+                            class="main-img">
                         <button class="btn-360-hero btn-360" id="detail-360-btn">
                             <i data-lucide="rotate-3d"></i> Launch 360° Virtual Tour
                         </button>
@@ -74,10 +79,12 @@
                         <div class="title-area">
                             <span id="detail-type" class="detail-badge">Luxury Villa</span>
                             <h1 id="detail-title" class="detail-name">The Zenith Residence</h1>
-                            <p class="detail-loc"><i data-lucide="map-pin" size="18"></i> <span id="detail-location">Baner Hills, Pune</span></p>
+                            <p class="detail-loc"><i data-lucide="map-pin" size="18"></i> <span
+                                    id="detail-location">Baner Hills, Pune</span></p>
                         </div>
                         <div class="price-area">
-                            <span id="detail-price" class="detail-cost" style="font-size: 1.5rem;">Price on Request</span>
+                            <span id="detail-price" class="detail-cost" style="font-size: 1.5rem;">Price on
+                                Request</span>
 
                         </div>
                     </div>
@@ -118,7 +125,10 @@
                     <div class="details-section">
                         <h3 class="section-title-sm">Description</h3>
                         <p id="detail-description" class="description-text">
-                            This magnificent residence offers an unparalleled lifestyle of luxury and comfort. Nestled in the prestigious Baner Hills, the property features panoramic views, state-of-the-art architecture, and world-class amenities. Perfect for those who seek the very best in Pune's real estate market.
+                            This magnificent residence offers an unparalleled lifestyle of luxury and comfort. Nestled
+                            in the prestigious Baner Hills, the property features panoramic views, state-of-the-art
+                            architecture, and world-class amenities. Perfect for those who seek the very best in Pune's
+                            real estate market.
                         </p>
                     </div>
 
@@ -134,47 +144,53 @@
                             <div class="amenity"><i data-lucide="check-circle" size="16"></i> Private Garden</div>
                         </div>
 
-                </div>
+                    </div>
 
-                <!-- Sidebar Inquiry (Right) -->
-                <aside class="details-sidebar">
-                    <div class="inquiry-card">
-                        <h3 class="inquiry-title">Inquire Now</h3>
-                        <p class="inquiry-subtitle">Connect with our luxury concierge for a private viewing.</p>
-                        
-                        <form class="inquiry-form">
-                            <input type="text" placeholder="Full Name" required>
-                            <input type="email" placeholder="Email Address" required>
-                            <input type="tel" placeholder="Phone Number" required>
-                            <textarea placeholder="Your Message" rows="4"></textarea>
-                            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-                        </form>
+                    <!-- Sidebar Inquiry (Right) -->
+                    <aside class="details-sidebar">
+                        <div class="inquiry-card">
+                            <h3 class="inquiry-title">Inquire Now</h3>
+                            <p class="inquiry-subtitle">Connect with our luxury concierge for a private viewing.</p>
 
-                        <div class="agent-compact" style="margin-top: 2rem; border-top: 1px solid var(--gray-100); padding-top: 1.5rem;">
-                            <div style="display: flex; gap: 1rem; align-items: center;">
-                                <img src="assets/img/gaurav-jain.png" alt="Gaurav Jain" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
-                                <div>
-                                    <h4 style="margin: 0; font-size: 1rem;">Gaurav Jain</h4>
-                                    <span style="font-size: 0.8rem; color: var(--gray-500);">Premium Specialist</span>
+                            <form class="inquiry-form">
+                                <input type="text" placeholder="Full Name" required>
+                                <input type="email" placeholder="Email Address" required>
+                                <input type="tel" placeholder="Phone Number" required>
+                                <textarea placeholder="Your Message" rows="4"></textarea>
+                                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                            </form>
+
+                            <div class="agent-compact"
+                                style="margin-top: 2rem; border-top: 1px solid var(--gray-100); padding-top: 1.5rem;">
+                                <div style="display: flex; gap: 1rem; align-items: center;">
+                                    <img src="assets/img/gaurav-jain.png" alt="Gaurav Jain"
+                                        style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                                    <div>
+                                        <h4 style="margin: 0; font-size: 1rem;">Gaurav Jain</h4>
+                                        <span style="font-size: 0.8rem; color: var(--gray-500);">Premium
+                                            Specialist</span>
+                                    </div>
                                 </div>
+                                <a href="tel:+919876543210" class="btn btn-outline"
+                                    style="width: 100%; margin-top: 1rem; border-color: var(--gray-200);">
+                                    <i data-lucide="phone" size="16"></i> Call Agent
+                                </a>
                             </div>
-                            <a href="tel:+919876543210" class="btn btn-outline" style="width: 100%; margin-top: 1rem; border-color: var(--gray-200);">
-                                <i data-lucide="phone" size="16"></i> Call Agent
-                            </a>
                         </div>
-                    </div>
 
-                    <div class="sidebar-ad" style="margin-top: 2rem;">
-                        <img src="assets/img/property-3.png" alt="Similar Ad" style="width: 100%; border-radius: var(--radius-lg); filter: brightness(0.7);">
-                        <div style="position: absolute; bottom: 1.5rem; left: 1.5rem; color: var(--white);">
-                            <h4 style="margin: 0;">Need Financing?</h4>
-                            <p style="font-size: 0.8rem; opacity: 0.8; margin: 0.25rem 0 1rem;">Check your eligibility instantly.</p>
-                            <a href="#" class="btn btn-primary btn-sm">Get Quote</a>
+                        <div class="sidebar-ad" style="margin-top: 2rem;">
+                            <img src="assets/img/property-3.png" alt="Similar Ad"
+                                style="width: 100%; border-radius: var(--radius-lg); filter: brightness(0.7);">
+                            <div style="position: absolute; bottom: 1.5rem; left: 1.5rem; color: var(--white);">
+                                <h4 style="margin: 0;">Need Financing?</h4>
+                                <p style="font-size: 0.8rem; opacity: 0.8; margin: 0.25rem 0 1rem;">Check your
+                                    eligibility instantly.</p>
+                                <a href="#" class="btn btn-primary btn-sm">Get Quote</a>
+                            </div>
                         </div>
-                    </div>
-                </aside>
+                    </aside>
+                </div>
             </div>
-        </div>
     </main>
 
     <footer class="footer">
@@ -186,8 +202,10 @@
     </footer>
 
     <a href="https://wa.me/918123440245" class="floating-contact whatsapp" target="_blank" title="Chat on WhatsApp">
-        <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="0" fill="currentColor" style="margin-top: 2px;">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="0" fill="currentColor"
+            style="margin-top: 2px;">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
         </svg>
     </a>
     <script src="data/properties.js"></script>
@@ -197,13 +215,13 @@
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const propertyId = parseInt(urlParams.get('id'));
-            
+
             // Re-Sync Data every time we load to ensure local additions are included
             const localData = JSON.parse(localStorage.getItem('NEXORA_LOCAL_PROPERTIES') || '[]');
             const allProperties = (typeof NEXORA_PROPERTIES !== 'undefined') ? [...NEXORA_PROPERTIES, ...localData] : localData;
-            
+
             const property = allProperties.find(p => p.id === propertyId) || allProperties[0];
-            
+
             if (property) {
                 document.getElementById('breadcrumb-title').textContent = property.title;
                 document.getElementById('detail-title').textContent = property.title;
@@ -232,7 +250,7 @@
                 // Update Growth Report dynamically
                 const corridorEl = document.getElementById('detail-corridor');
                 if (corridorEl) corridorEl.textContent = property.location;
-                
+
                 const milestoneList = document.querySelector('.insight-item ul');
                 if (milestoneList && property.location === 'Hinjewadi') {
                     milestoneList.innerHTML = `
@@ -253,4 +271,5 @@
         });
     </script>
 </body>
+
 </html>
