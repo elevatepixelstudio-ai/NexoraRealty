@@ -996,6 +996,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--white);
     transition: all 0.3s ease;
 }
 
